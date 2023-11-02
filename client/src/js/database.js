@@ -33,13 +33,15 @@ export const getDb = async () => {
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
   try {
-    const content = await store.getAll();
+    const content = store.get(1);
     console.log('Retrieved data: ', content);
-    return content;
+    // return content;
   } catch (error) {
     console.error('getDb not implemented' + error);
     return [];
   }
+  const result = await content;
+  return result?.value;
 };
 
 
