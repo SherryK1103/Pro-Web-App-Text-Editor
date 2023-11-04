@@ -9,11 +9,11 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = () => {
   return {
     mode: 'development',
-    entry: {
+    entry: { // where should webpack start looking and what should it do with the files it finds
       main: './src/js/index.js',
       install: './src/js/install.js'
     },
-    output: {
+    output: { // output is data mining
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
@@ -51,6 +51,18 @@ module.exports = () => {
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          // We use babel-loader in order to use ES6.
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
+          },
         },
       ],
     },

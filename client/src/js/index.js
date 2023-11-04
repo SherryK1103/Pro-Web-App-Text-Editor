@@ -2,7 +2,6 @@ import { Workbox } from 'workbox-window';
 import Editor from './editor';
 import './database';
 import '../css/style.css';
-import { initdb, putDb, getDb, } from './database';
 
 const main = document.querySelector('#main');
 main.innerHTML = '';
@@ -23,9 +22,6 @@ const editor = new Editor();
 if (typeof editor === 'undefined') {
   loadSpinner();
 }
-
-// Initializes the IndexedDB database
-initdb();
 
 // Function to save data to IndexedDB
 const saveDataToDB = async (content) => {
