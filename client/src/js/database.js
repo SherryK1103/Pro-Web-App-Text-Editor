@@ -32,8 +32,9 @@ export const getDb = async () => {
   const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
+  let content;
   try {
-    const content = store.get(1);
+    content = store.get(1);
     console.log('Retrieved data: ', content);
     // return content;
   } catch (error) {
